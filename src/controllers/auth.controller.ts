@@ -9,19 +9,6 @@ import { signJwt } from "utils/jwt";
 import { BadRequestError, NotFoundError } from "utils/AppError";
 import Email from "utils/email";
 
-// export const signup = catchAsync(
-//   async (req: Request, res: Response, next: NextFunction) => {
-//     const { role, ...body } = req.body;
-//     const user = await createOne(User, body);
-//     await new Email(user, "thegioididong").sendWelcome();
-//     res.status(201).json({
-//       status: "success",
-//       data: {
-//         ...omit(user.toJSON(), "password"),
-//       },
-//     });
-//   }
-// );
 export const signup = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { role, ...body } = req.body;
@@ -70,7 +57,7 @@ export const forgotPassword = catchAsync(
       //   "host"
       // )}/api/v1/users/resetPassword/${resetToken}`;
       // TODO: RESET PASSWORD
-      const resetLink = `${process.env.URL}/resetPassword/${resetToken}`;
+      const resetLink = `/resetPassword/${resetToken}`;
       await new Email(user, resetLink).sendPasswordReset();
 
       res.status(200).json({
