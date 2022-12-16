@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev   -r tsconfig-paths/register  --respawn --transpile-only    server.ts",
     "start": "  ts-node  server.ts",
-    "build": "set NODE_OPTIONS=--max_old_space_size=4096",
+    "build": "npm i && set NODE_OPTIONS=--max_old_space_size=4096",
     "debug": "ndb -r ts-node/register ./server.ts"
   },
   "author": "",
