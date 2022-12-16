@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev   -r tsconfig-paths/register  --respawn --transpile-only    server.ts",
     "start": "ts-node  server.ts",
+    "build": "npm i",
     "debug": "ndb -r ts-node/register ./server.ts"
   },
   "scrips": {
