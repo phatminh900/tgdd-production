@@ -10,16 +10,19 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 const port = process.env.PORT || 4000;
-const server = app.listen(port, () => {
-  log.info(`App running at port ${port}`);
 
-  connect();
-  routes(app);
+const server = connect().then(() => {
+  return app.listen(port, () => {
+    log.info(`App running at port ${port}`);
+
+    // connect();
+    routes(app);
+  });
 });
-process.on("unhandledRejection", (err: Error) => {
+process.on("unhandledRejection", async (err: Error) => {
   console.log("UNHANDLED REJECTION! 💥 Shutting down...");
   console.log(err.name, err.message);
-  server.close(() => {
+  (await server).close(() => {
     process.exit(1);
   });
 });

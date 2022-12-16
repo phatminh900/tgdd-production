@@ -7,15 +7,13 @@ dotenv.config();
 const uri = process.env.DATABASE!;
 
 // console.log(uri);
-const connect = () => {
-  mongoose
-    .connect(uri)
-    .then(() => {
-      log.info("Connected to DB");
-    })
-    .catch((err) => {
-      log.error(err);
-      log.error("fail to connect to DB");
-    });
+const connect = async () => {
+  try {
+    await mongoose.connect(uri);
+    log.info("Connected to DB");
+  } catch (error) {
+    log.error(error);
+    log.error("fail to connect to DB");
+  }
 };
 export default connect;
